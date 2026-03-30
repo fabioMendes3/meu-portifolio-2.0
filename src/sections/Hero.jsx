@@ -3,15 +3,18 @@ import FloatingTech from "../components/FloatingTech";
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen overflow-hidden bg-transparent text-white">
+    <section
+      id="hero"
+      className="relative min-h-screen overflow-hidden bg-transparent pt-24 text-white sm:pt-28 md:pt-32"
+    >
       <FloatingTech />
 
-      <div className="relative z-10 flex min-h-screen items-center justify-center px-6">
+      <div className="relative z-10 flex min-h-screen items-start justify-center px-6 pb-16 sm:pb-20 lg:items-center">
         <motion.div
           initial={{ opacity: 0, y: 35 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
-          className="mx-auto max-w-5xl text-center"
+          className="mx-auto max-w-5xl pt-6 text-center sm:pt-8 md:pt-10 lg:pt-0"
         >
           <TagFabio />
 

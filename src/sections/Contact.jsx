@@ -55,7 +55,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-transparent px-4 py-28 text-white md:px-8 xl:px-12"
+      className="relative overflow-hidden bg-transparent px-4 py-24 text-white md:px-8 md:py-28 xl:px-12"
     >
       <div className="absolute left-1/2 top-10 h-72 w-[34rem] -translate-x-1/2 rounded-full bg-cyan-400/6 blur-3xl" />
       <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl" />
@@ -95,20 +95,20 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid gap-8 xl:grid-cols-2">
+        <div className="grid gap-8 2xl:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
           <motion.div
             initial={{ opacity: 0, x: -35 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.75, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.25 }}
-            className="min-h-[760px] rounded-[36px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl md:p-8 xl:p-10"
+            className="rounded-[36px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl md:p-8 xl:p-10 2xl:min-h-[760px]"
           >
-            <div className="grid h-full gap-8 lg:grid-cols-[380px_1fr]">
+            <div className="grid h-full gap-8 2xl:grid-cols-[340px_minmax(0,1fr)]">
               <div className="flex items-start justify-center">
-                <div className="relative w-full max-w-[380px] overflow-hidden rounded-[32px] border border-white/10 bg-[#0b1220]/90 shadow-[0_0_30px_rgba(0,0,0,0.25)]">
+                <div className="relative w-full max-w-[360px] overflow-hidden rounded-[32px] border border-white/10 bg-[#0b1220]/90 shadow-[0_0_30px_rgba(0,0,0,0.25)] 2xl:max-w-[340px]">
                   <div className="aspect-[4/5] w-full">
                     <img
-                      src="public/images/foto.png"
+                      src="/images/foto.png"
                       alt="Foto de Fabio Mendes"
                       className="h-full w-full object-cover"
                     />
@@ -118,7 +118,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="flex flex-col justify-center">
+              <div className="min-w-0 flex flex-col justify-center">
                 <p
                   className="mb-3 text-sm uppercase tracking-[0.25em] text-cyan-300/80"
                   style={{ fontFamily: '"JetBrains Mono", monospace' }}
@@ -217,9 +217,9 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.75, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.25 }}
-            className="min-h-[760px] rounded-[36px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl md:p-8 xl:p-10"
+            className="rounded-[36px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl md:p-8 xl:p-10 2xl:min-h-[760px]"
           >
-            <div className="flex h-full flex-col">
+            <div className="flex h-full min-w-0 flex-col">
               <p
                 className="mb-3 text-sm uppercase tracking-[0.25em] text-cyan-300/80"
                 style={{ fontFamily: '"JetBrains Mono", monospace' }}
