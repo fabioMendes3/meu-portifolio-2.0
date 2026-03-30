@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@keyframes typing {
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 18ch;
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    border-color: rgba(103, 232, 249, 1);
+  }
+  51%, 100% {
+    border-color: transparent;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
