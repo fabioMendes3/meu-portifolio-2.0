@@ -36,11 +36,11 @@ const floatingElements = [
 function getColorClasses(color) {
   const colors = {
     cyan: {
-      border: "border-cyan-400/30",
-      bg: "bg-cyan-400/10",
-      text: "text-cyan-300",
-      glow: "shadow-[0_0_30px_rgba(34,211,238,0.22)]",
-      line: "rgba(34,211,238,0.30)",
+      border: "border-[#ade0db]/30",
+      bg: "bg-[#ade0db]/10",
+      text: "text-[#d9dbdb]",
+      glow: "shadow-[0_0_30px_rgba(173,224,219,0.22)]",
+      line: "rgba(173,224,219,0.30)",
     },
     lime: {
       border: "border-lime-400/30",
@@ -178,21 +178,28 @@ export default function FloatingTech() {
     const { width, height, paddingX, paddingTop, paddingBottom } = getBounds();
     const maxY = height - paddingBottom;
 
+    // Espalha os itens numa grade para garantir posições iniciais sem sobreposição
+    const cols = Math.ceil(Math.sqrt(18));
+    const cellW = Math.max(width - paddingX * 2, 100) / cols;
+    const cellH = Math.max(maxY - paddingTop, 100) / Math.ceil(18 / cols);
+
     const initial = Array.from({ length: 18 }, (_, i) => {
       const element = floatingElements[i % floatingElements.length];
-      const baseVX = (Math.random() - 0.5) * 0.22;
-      const baseVY = (Math.random() - 0.5) * 0.22;
+      const col = i % cols;
+      const row = Math.floor(i / cols);
+      const baseVX = (Math.random() - 0.5) * 0.45;
+      const baseVY = (Math.random() - 0.5) * 0.45;
 
       return {
         id: i,
-        x: paddingX + Math.random() * Math.max(width - paddingX * 2, 100),
-        y: paddingTop + Math.random() * Math.max(maxY - paddingTop, 100),
+        x: paddingX + col * cellW + Math.random() * (cellW * 0.5),
+        y: paddingTop + row * cellH + Math.random() * (cellH * 0.5),
         vx: baseVX,
         vy: baseVY,
         baseVX,
         baseVY,
         rotation: Math.random() * 16 - 8,
-        rotationSpeed: (Math.random() - 0.5) * 0.03,
+        rotationSpeed: (Math.random() - 0.5) * 0.05,
         depth: Math.random(),
         ...element,
       };
@@ -219,6 +226,11 @@ export default function FloatingTech() {
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseleave", handleMouseLeave);
 
+    // Raio de colisão de cada item (metade do tamanho visual ~56px + margem)
+    const RADIUS = 32;
+    const COLLISION_DIST = RADIUS * 2;
+    const RESTITUTION = 0.82;
+
     const interval = setInterval(() => {
       const { width, height, paddingX, paddingTop, paddingBottom } = getBounds();
       const maxY = height - paddingBottom;
@@ -226,58 +238,91 @@ export default function FloatingTech() {
       const now = Date.now();
       const recentlyInteracted = now - lastInteraction < 900;
 
-      setItems((prev) =>
-        prev.map((item) => {
-          const dx = item.x - mouse.x;
-          const dy = item.y - mouse.y;
+      setItems((prev) => {
+        // Passo 1 — atualiza velocidade e posição de cada item individualmente
+        const next = prev.map((item) => {
+          const cx = item.x + RADIUS;
+          const cy = item.y + RADIUS;
+          const dx = cx - mouse.x;
+          const dy = cy - mouse.y;
           const distance = Math.sqrt(dx * dx + dy * dy) || 1;
 
           let vx = item.vx;
           let vy = item.vy;
           let rotation = item.rotation;
 
-          if (distance < 140) {
-            const force = (140 - distance) / 140;
-            const depthForce = 0.35 + item.depth * 0.35;
-
+          if (distance < 150) {
+            const force = (150 - distance) / 150;
+            const depthForce = 0.45 + item.depth * 0.45;
             vx += (dx / distance) * force * depthForce;
             vy += (dy / distance) * force * depthForce;
-            rotation += (Math.random() - 0.5) * 0.8;
+            rotation += (Math.random() - 0.5) * 1.2;
           }
 
-          vx += (item.baseVX - vx) * (recentlyInteracted ? 0.02 : 0.035);
-          vy += (item.baseVY - vy) * (recentlyInteracted ? 0.02 : 0.035);
+          vx += (item.baseVX - vx) * (recentlyInteracted ? 0.018 : 0.038);
+          vy += (item.baseVY - vy) * (recentlyInteracted ? 0.018 : 0.038);
 
-          const maxSpeed = 0.55 + item.depth * 0.2;
+          const maxSpeed = 0.9 + item.depth * 0.35;
           vx = Math.max(Math.min(vx, maxSpeed), -maxSpeed);
           vy = Math.max(Math.min(vy, maxSpeed), -maxSpeed);
 
           rotation += item.rotationSpeed;
-          rotation += (0 - rotation) * 0.006;
+          rotation += (0 - rotation) * 0.005;
 
           let newX = item.x + vx;
           let newY = item.y + vy;
 
-          if (newX < paddingX || newX > width - paddingX) {
-            vx *= -0.5;
-            newX = Math.max(paddingX, Math.min(newX, width - paddingX));
-          }
+          const rightBound = width - paddingX - RADIUS * 2;
+          const bottomBound = maxY - RADIUS * 2;
 
-          if (newY < paddingTop || newY > maxY) {
-            vy *= -0.5;
-            newY = Math.max(paddingTop, Math.min(newY, maxY));
-          }
+          if (newX < paddingX) { vx = Math.abs(vx) * RESTITUTION; newX = paddingX; }
+          else if (newX > rightBound) { vx = -Math.abs(vx) * RESTITUTION; newX = rightBound; }
 
-          return {
-            ...item,
-            x: newX,
-            y: newY,
-            vx,
-            vy,
-            rotation,
-          };
-        })
-      );
+          if (newY < paddingTop) { vy = Math.abs(vy) * RESTITUTION; newY = paddingTop; }
+          else if (newY > bottomBound) { vy = -Math.abs(vy) * RESTITUTION; newY = bottomBound; }
+
+          return { ...item, x: newX, y: newY, vx, vy, rotation };
+        });
+
+        // Passo 2 — detecta e resolve colisões entre pares de itens
+        for (let i = 0; i < next.length; i++) {
+          for (let j = i + 1; j < next.length; j++) {
+            const a = next[i];
+            const b = next[j];
+
+            const ax = a.x + RADIUS;
+            const ay = a.y + RADIUS;
+            const bx = b.x + RADIUS;
+            const by = b.y + RADIUS;
+
+            const dx = ax - bx;
+            const dy = ay - by;
+            const dist = Math.sqrt(dx * dx + dy * dy) || 0.001;
+
+            if (dist < COLLISION_DIST) {
+              const nx = dx / dist;
+              const ny = dy / dist;
+              // Separa os dois itens para eliminar o overlap
+              const overlap = (COLLISION_DIST - dist) * 0.52;
+              next[i] = { ...next[i], x: next[i].x + nx * overlap, y: next[i].y + ny * overlap };
+              next[j] = { ...next[j], x: next[j].x - nx * overlap, y: next[j].y - ny * overlap };
+
+              // Impulso elástico: troca as componentes de velocidade ao longo da normal
+              const dvx = next[i].vx - next[j].vx;
+              const dvy = next[i].vy - next[j].vy;
+              const dot = dvx * nx + dvy * ny;
+
+              if (dot < 0) {
+                const impulse = (1 + RESTITUTION) * dot * 0.5;
+                next[i] = { ...next[i], vx: next[i].vx - impulse * nx, vy: next[i].vy - impulse * ny };
+                next[j] = { ...next[j], vx: next[j].vx + impulse * nx, vy: next[j].vy + impulse * ny };
+              }
+            }
+          }
+        }
+
+        return next;
+      });
     }, 16);
 
     const handleResize = () => {
@@ -336,7 +381,7 @@ export default function FloatingTech() {
   }, [items]);
 
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden">
       <svg className="absolute inset-0 h-full w-full">
         {connections.map((line) => (
           <line
@@ -354,8 +399,6 @@ export default function FloatingTech() {
 
       {items.map((item) => {
         const scale = 0.72 + item.depth * 0.58;
-        const opacity = 0.32 + item.depth * 0.68;
-        const blur = (1 - item.depth) * 1.2;
 
         return (
           <div
@@ -363,8 +406,6 @@ export default function FloatingTech() {
             className="absolute transition-transform duration-75"
             style={{
               transform: `translate(${item.x}px, ${item.y}px) scale(${scale}) rotate(${item.rotation}deg)`,
-              opacity,
-              filter: `blur(${blur}px)`,
             }}
           >
             <FloatingItem item={item} />

@@ -11,7 +11,7 @@
 
 @keyframes blink {
   0%, 50% {
-    border-color: rgba(103, 232, 249, 1);
+    border-color: rgba(188, 235, 223, 1);
   }
   51%, 100% {
     border-color: transparent;

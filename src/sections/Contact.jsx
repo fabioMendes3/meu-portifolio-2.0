@@ -57,8 +57,8 @@ export default function Contact() {
       id="contact"
       className="relative overflow-hidden bg-transparent px-4 py-24 text-white md:px-8 md:py-28 xl:px-12"
     >
-      <div className="absolute left-1/2 top-10 h-72 w-[34rem] -translate-x-1/2 rounded-full bg-cyan-400/6 blur-3xl" />
-      <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl" />
+      <div className="absolute left-1/2 top-10 h-72 w-[34rem] -translate-x-1/2 rounded-full bg-[#d0f2e7]/6 blur-3xl" />
+      <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-[#ade0db]/10 blur-3xl" />
 
       <div className="relative z-10 mx-auto w-full max-w-[1800px]">
         <motion.div
@@ -69,7 +69,7 @@ export default function Contact() {
           className="mx-auto mb-16 max-w-3xl text-center"
         >
           <p
-            className="mb-4 text-sm uppercase tracking-[0.35em] text-cyan-300/80"
+            className="mb-4 text-sm uppercase tracking-[0.35em] text-[#d0f2e7]/80"
             style={{ fontFamily: '"JetBrains Mono", monospace' }}
           >
             bio + contato
@@ -80,7 +80,7 @@ export default function Contact() {
             style={{ fontFamily: '"Space Grotesk", sans-serif' }}
           >
             Vamos transformar
-            <span className="block bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-[#ebf2f2] via-[#d0f2e7] to-[#bcebdf] bg-clip-text text-transparent">
               sua ideia em uma presença digital forte
             </span>
           </h2>
@@ -101,11 +101,11 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.75, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.25 }}
-            className="rounded-[36px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl md:p-8 xl:p-10 2xl:min-h-[760px]"
+            className="rounded-[36px] border border-white/10 bg-[#bcebdf]/8 p-6 backdrop-blur-xl md:p-8 xl:p-10 2xl:min-h-[760px]"
           >
             <div className="grid h-full gap-8 2xl:grid-cols-[340px_minmax(0,1fr)]">
               <div className="flex items-start justify-center">
-                <div className="relative w-full max-w-[360px] overflow-hidden rounded-[32px] border border-white/10 bg-[#0b1220]/90 shadow-[0_0_30px_rgba(0,0,0,0.25)] 2xl:max-w-[340px]">
+                <div className="relative w-full max-w-[360px] overflow-hidden rounded-[32px] border border-white/10 bg-[#020202]/90 shadow-[0_0_30px_rgba(0,0,0,0.25)] 2xl:max-w-[340px]">
                   <div className="aspect-[4/5] w-full">
                     <img
                       src="/images/foto.png"
@@ -114,13 +114,13 @@ export default function Contact() {
                     />
                   </div>
 
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050816]/30 via-transparent to-transparent" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#020202]/30 via-transparent to-transparent" />
                 </div>
               </div>
 
               <div className="min-w-0 flex flex-col justify-center">
                 <p
-                  className="mb-3 text-sm uppercase tracking-[0.25em] text-cyan-300/80"
+                  className="mb-3 text-sm uppercase tracking-[0.25em] text-[#d0f2e7]/80"
                   style={{ fontFamily: '"JetBrains Mono", monospace' }}
                 >
                   sobre mim
@@ -217,11 +217,11 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.75, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.25 }}
-            className="rounded-[36px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl md:p-8 xl:p-10 2xl:min-h-[760px]"
+            className="rounded-[36px] border border-white/10 bg-[#d0f2e7]/8 p-6 backdrop-blur-xl md:p-8 xl:p-10 2xl:min-h-[760px]"
           >
             <div className="flex h-full min-w-0 flex-col">
               <p
-                className="mb-3 text-sm uppercase tracking-[0.25em] text-cyan-300/80"
+                className="mb-3 text-sm uppercase tracking-[0.25em] text-[#d0f2e7]/80"
                 style={{ fontFamily: '"JetBrains Mono", monospace' }}
               >
                 entre em contato
@@ -254,7 +254,7 @@ export default function Contact() {
                       name="from_name"
                       placeholder="Seu nome"
                       required
-                      className="w-full rounded-2xl border border-white/10 bg-[#0b1220]/80 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-cyan-300/35"
+                      className="w-full rounded-2xl border border-white/10 bg-[#020202]/80 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-[#d0f2e7]/35"
                     />
                   </div>
 
@@ -267,7 +267,7 @@ export default function Contact() {
                       name="from_email"
                       placeholder="seuemail@exemplo.com"
                       required
-                      className="w-full rounded-2xl border border-white/10 bg-[#0b1220]/80 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-cyan-300/35"
+                      className="w-full rounded-2xl border border-white/10 bg-[#020202]/80 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-[#d0f2e7]/35"
                     />
                   </div>
                 </div>
@@ -280,7 +280,7 @@ export default function Contact() {
                     type="text"
                     name="project_type"
                     placeholder="Site, landing page, sistema web..."
-                    className="w-full rounded-2xl border border-white/10 bg-[#0b1220]/80 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-cyan-300/35"
+                    className="w-full rounded-2xl border border-white/10 bg-[#020202]/80 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-[#d0f2e7]/35"
                   />
                 </div>
 
@@ -293,7 +293,7 @@ export default function Contact() {
                     rows="10"
                     placeholder="Me conte um pouco sobre o que você precisa..."
                     required
-                    className="min-h-[280px] w-full rounded-2xl border border-white/10 bg-[#0b1220]/80 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-cyan-300/35"
+                    className="min-h-[280px] w-full rounded-2xl border border-white/10 bg-[#020202]/80 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-[#d0f2e7]/35"
                   />
                 </div>
 
@@ -313,7 +313,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isSending}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-cyan-300 px-7 py-3 text-sm font-semibold text-[#051018] transition duration-300 hover:scale-[1.02] hover:bg-cyan-200 disabled:cursor-not-allowed disabled:opacity-70"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#ade0db] px-7 py-3 text-sm font-semibold text-[#020202] transition duration-300 hover:scale-[1.02] hover:bg-[#bcebdf] disabled:cursor-not-allowed disabled:opacity-70"
                   >
                     {isSending ? "Enviando..." : "Enviar mensagem"}
                     <Send size={16} />

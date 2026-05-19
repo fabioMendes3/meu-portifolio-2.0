@@ -2,12 +2,12 @@ import { Github, Instagram, Linkedin, Mail } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer id="footer" className="relative mt-10 w-full border-t border-white/10 bg-[#060b14]/80 text-white backdrop-blur-xl">
+    <footer id="footer" className="relative mt-10 w-full border-t border-white/10 bg-transparent text-white backdrop-blur-xl">
       <div className="mx-auto w-full max-w-[1800px] px-4 py-10 md:px-8 xl:px-12">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr_1fr]">
           <div>
             <p
-              className="text-sm uppercase tracking-[0.3em] text-cyan-300/80"
+              className="text-sm uppercase tracking-[0.3em] text-[#d0f2e7]/80"
               style={{ fontFamily: '"JetBrains Mono", monospace' }}
             >
               {"<fabioMendes/>"}
