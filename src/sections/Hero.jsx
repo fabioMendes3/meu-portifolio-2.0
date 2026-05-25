@@ -1,40 +1,20 @@
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import FloatingTech from "../components/FloatingTech";
 
 export default function Hero() {
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    if (videoRef.current) videoRef.current.playbackRate = 0.55;
-  }, []);
-
   return (
     <section
       id="hero"
-      className="relative min-h-screen overflow-hidden bg-[#020202] pt-24 text-white sm:pt-28 md:pt-32"
+      className="relative min-h-screen overflow-hidden bg-transparent pt-24 text-white sm:pt-28 md:pt-32"
     >
-      {/* vídeo de fundo */}
-      <video
-        ref={videoRef}
-        src="/videos/background3.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 h-full w-full object-cover opacity-25"
-      />
-      {/* overlay escuro para preservar legibilidade */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#020202]/55 via-[#020202]/20 to-[#020202]/75" />
-
       <FloatingTech />
 
-      <div className="relative z-10 flex min-h-screen items-start justify-center px-6 pb-16 sm:pb-20 lg:items-center">
+      <div className="relative z-10 flex min-h-screen items-start justify-start px-6 pb-16 sm:pb-20 md:px-10 lg:items-center lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 35 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
-          className="mx-auto max-w-5xl pt-6 text-center sm:pt-8 md:pt-10 lg:pt-0"
+          className="max-w-3xl pt-6 text-left sm:pt-8 md:pt-10 lg:pt-0"
         >
           <TagFabio />
 
@@ -42,8 +22,8 @@ export default function Hero() {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.25 }}
-            className="text-4xl font-semibold leading-tight sm:text-5xl md:text-6xl lg:text-7xl"
-            style={{ fontFamily: '"Space Grotesk", sans-serif' }}
+            className="text-2xl leading-snug sm:text-3xl md:text-4xl lg:text-5xl"
+            style={{ fontFamily: '"Black Ops One", cursive' }}
           >
             Desenvolvimento de
             <span className="block bg-gradient-to-r from-[#ebf2f2] via-[#d0f2e7] to-[#bcebdf] bg-clip-text text-transparent">
@@ -56,8 +36,8 @@ export default function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.4 }}
-            className="mx-auto mt-7 max-w-2xl text-base leading-8 text-white/72 md:text-lg"
-            style={{ fontFamily: '"Inter", sans-serif' }}
+            className="mt-7 max-w-xl text-base leading-8 text-white/72 md:text-lg"
+            style={{ fontFamily: '"Science Gothic", sans-serif' }}
           >
             Eu crio interfaces bonitas, rápidas e estratégicas para empresas que
             querem transmitir valor, destacar sua marca e conquistar mais clientes.
@@ -67,7 +47,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.55 }}
-            className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+            className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center"
           >
             <a
               href="#project"
@@ -88,8 +68,8 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.85, duration: 1 }}
-            className="mt-14 flex flex-wrap items-center justify-center gap-3"
-            style={{ fontFamily: '"Inter", sans-serif' }}
+            className="mt-14 flex flex-wrap items-center justify-start gap-3"
+            style={{ fontFamily: '"Science Gothic", sans-serif' }}
           >
             {["React", "Tailwind", "Node.js", "Express", "MySQL", "PostgreSQL"].map((item) => (
               <span
@@ -112,7 +92,7 @@ function TagFabio() {
       initial={{ opacity: 0, y: 18, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.8, delay: 0.1 }}
-      className="mb-10 flex justify-center"
+      className="mb-10 flex justify-start"
     >
       <div className="group relative inline-flex items-center overflow-hidden rounded-full border border-[#d0f2e7]/25 bg-[#d0f2e7]/5 px-7 py-3.5 backdrop-blur-md">
         <motion.div

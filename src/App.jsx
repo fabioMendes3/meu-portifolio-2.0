@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import Navbar from "./components/Navbar";
 import Hero from "./sections/Hero";
 import Services from "./sections/Services";
 import Tech from "./sections/Tech";
@@ -36,6 +37,7 @@ export default function App() {
 
       {/* camada 10 — conteúdo (Hero cobre o background2 com bg-[#020202]) */}
       <div className="relative z-10">
+        <Navbar />
         <Hero />
         <Services />
         <Tech />

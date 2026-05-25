@@ -104,7 +104,7 @@ export default function Services() {
           <h2
             ref={titleRef}
             className="text-3xl font-semibold leading-tight md:text-5xl"
-            style={{ fontFamily: '"Space Grotesk", sans-serif', opacity: 0 }}
+            style={{ fontFamily: '"Science Gothic", sans-serif', opacity: 0 }}
           >
             O que eu posso construir
             <span className="block bg-gradient-to-r from-[#ebf2f2] via-[#d0f2e7] to-[#bcebdf] bg-clip-text text-transparent">
@@ -115,7 +115,7 @@ export default function Services() {
           <p
             ref={descRef}
             className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/70 md:text-lg"
-            style={{ fontFamily: '"Inter", sans-serif', opacity: 0 }}
+            style={{ fontFamily: '"Science Gothic", sans-serif', opacity: 0 }}
           >
             Soluções digitais com foco em estética, performance e estratégia,
             pensadas para valorizar sua empresa e gerar resultados reais.
@@ -144,6 +144,7 @@ export default function Services() {
                       <Icon size={26} strokeWidth={2} />
                     </div>
                     <span
+                      aria-hidden="true"
                       className="text-sm text-white/25"
                       style={{ fontFamily: '"JetBrains Mono", monospace' }}
                     >
@@ -153,14 +154,14 @@ export default function Services() {
 
                   <h3
                     className="text-2xl font-semibold text-white"
-                    style={{ fontFamily: '"Space Grotesk", sans-serif' }}
+                    style={{ fontFamily: '"Science Gothic", sans-serif' }}
                   >
                     {service.title}
                   </h3>
 
                   <p
                     className="mt-4 leading-8 text-white/68"
-                    style={{ fontFamily: '"Inter", sans-serif' }}
+                    style={{ fontFamily: '"Science Gothic", sans-serif' }}
                   >
                     {service.description}
                   </p>

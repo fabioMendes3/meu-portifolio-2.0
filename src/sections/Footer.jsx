@@ -35,20 +35,20 @@ export default function Footer() {
               navegação
             </p>
 
-            <div className="space-y-3 text-white/75">
-              <a href="#hero" className="block transition hover:text-white">
+            <div className="flex flex-col text-white/75">
+              <a href="#hero" className="flex min-h-[44px] items-center transition hover:text-white">
                 Início
               </a>
-              <a href="#service" className="block transition hover:text-white">
+              <a href="#service" className="flex min-h-[44px] items-center transition hover:text-white">
                 Serviços
               </a>
-              <a href="#tech" className="block transition hover:text-white">
+              <a href="#tech" className="flex min-h-[44px] items-center transition hover:text-white">
                 Tecnologias
               </a>
-              <a href="#project" className="block transition hover:text-white">
+              <a href="#project" className="flex min-h-[44px] items-center transition hover:text-white">
                 Projetos
               </a>
-              <a href="#contact" className="block transition hover:text-white">
+              <a href="#contact" className="flex min-h-[44px] items-center transition hover:text-white">
                 Contato
               </a>
             </div>
@@ -64,7 +64,7 @@ export default function Footer() {
                 href="https://github.com/fabioMendes3"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-3 text-white/75 transition hover:text-white"
+                className="flex min-h-[44px] items-center gap-3 text-white/75 transition hover:text-white"
               >
                 <Github size={16} />
                 <span>GitHub</span>
@@ -74,7 +74,7 @@ export default function Footer() {
                 href="https://www.linkedin.com/in/fabio-mendes-73421727a/"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-3 text-white/75 transition hover:text-white"
+                className="flex min-h-[44px] items-center gap-3 text-white/75 transition hover:text-white"
               >
                 <Linkedin size={16} />
                 <span>LinkedIn</span>
@@ -84,7 +84,7 @@ export default function Footer() {
                 href="https://www.instagram.com/fabiomendesdev/"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-3 text-white/75 transition hover:text-white"
+                className="flex min-h-[44px] items-center gap-3 text-white/75 transition hover:text-white"
               >
                 <Instagram size={16} />
                 <span>Instagram</span>
@@ -92,7 +92,7 @@ export default function Footer() {
 
               <a
                 href="mailto:fabiohuem@hotmail.com"
-                className="flex items-center gap-3 text-white/75 transition hover:text-white"
+                className="flex min-h-[44px] items-center gap-3 text-white/75 transition hover:text-white"
               >
                 <Mail size={16} />
                 <span>fabiohuem@hotmail.com</span>

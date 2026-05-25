@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Github, Expand, X } from "lucide-react";
 import { projects } from "../data/projects";
+import LazyVideo from "../components/LazyVideo";
 
 const textVariants = (direction = "left") => ({
   hidden: {
@@ -54,7 +55,7 @@ export default function Projects() {
 
           <h2
             className="text-3xl font-semibold leading-tight md:text-5xl"
-            style={{ fontFamily: '"Space Grotesk", sans-serif' }}
+            style={{ fontFamily: '"Science Gothic", sans-serif' }}
           >
             Projetos que mostram
             <span className="block bg-gradient-to-r from-[#ebf2f2] via-[#d0f2e7] to-[#bcebdf] bg-clip-text text-transparent">
@@ -64,7 +65,7 @@ export default function Projects() {
 
           <p
             className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/70 md:text-lg"
-            style={{ fontFamily: '"Inter", sans-serif' }}
+            style={{ fontFamily: '"Science Gothic", sans-serif' }}
           >
             Trabalhos reais desenvolvidos com foco em interface, performance e
             experiência profissional para o cliente final.
@@ -103,14 +104,14 @@ export default function Projects() {
 
                   <h3
                     className="text-2xl font-semibold md:text-4xl"
-                    style={{ fontFamily: '"Space Grotesk", sans-serif' }}
+                    style={{ fontFamily: '"Science Gothic", sans-serif' }}
                   >
                     {project.title}
                   </h3>
 
                   <p
                     className="mt-5 max-w-xl text-base leading-8 text-white/70"
-                    style={{ fontFamily: '"Inter", sans-serif' }}
+                    style={{ fontFamily: '"Science Gothic", sans-serif' }}
                   >
                     {project.description}
                   </p>
@@ -166,7 +167,7 @@ export default function Projects() {
 
                   <div className="relative h-full overflow-hidden rounded-[30px] border border-white/10 bg-[#020202]/90 shadow-[0_0_40px_rgba(0,0,0,0.25)]">
                     <div className="group/video relative flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_center,rgba(188,235,223,0.08),transparent_60%)] p-4">
-                      <video
+                      <LazyVideo
                         src={project.video}
                         autoPlay
                         loop

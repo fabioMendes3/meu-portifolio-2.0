@@ -165,22 +165,24 @@ export default function FloatingTech() {
     const width = window.innerWidth;
     const height = window.innerHeight;
 
-    return {
-      width,
-      height,
-      paddingX: 44,
-      paddingTop: 24,
-      paddingBottom: Math.max(220, height * 0.26), // impede chegar na linha de transição
-    };
+    // Limite esquerdo: mantém os ícones na metade direita da tela,
+    // sem invadir a área de texto do hero nem a navbar.
+    const paddingLeft = Math.round(width * 0.52);
+    const paddingRight = 44;
+    const paddingTop = 84; // navbar h-16 (64px) + 20px de margem
+    const paddingBottom = Math.max(220, height * 0.26);
+
+    return { width, height, paddingLeft, paddingRight, paddingTop, paddingBottom };
   };
 
   useEffect(() => {
-    const { width, height, paddingX, paddingTop, paddingBottom } = getBounds();
+    const { width, height, paddingLeft, paddingRight, paddingTop, paddingBottom } = getBounds();
     const maxY = height - paddingBottom;
 
-    // Espalha os itens numa grade para garantir posições iniciais sem sobreposição
+    // Espalha os itens numa grade dentro da área direita disponível
     const cols = Math.ceil(Math.sqrt(18));
-    const cellW = Math.max(width - paddingX * 2, 100) / cols;
+    const usableW = Math.max(width - paddingLeft - paddingRight, 100);
+    const cellW = usableW / cols;
     const cellH = Math.max(maxY - paddingTop, 100) / Math.ceil(18 / cols);
 
     const initial = Array.from({ length: 18 }, (_, i) => {
@@ -192,7 +194,7 @@ export default function FloatingTech() {
 
       return {
         id: i,
-        x: paddingX + col * cellW + Math.random() * (cellW * 0.5),
+        x: paddingLeft + col * cellW + Math.random() * (cellW * 0.5),
         y: paddingTop + row * cellH + Math.random() * (cellH * 0.5),
         vx: baseVX,
         vy: baseVY,
@@ -232,7 +234,7 @@ export default function FloatingTech() {
     const RESTITUTION = 0.82;
 
     const interval = setInterval(() => {
-      const { width, height, paddingX, paddingTop, paddingBottom } = getBounds();
+      const { width, height, paddingLeft, paddingRight, paddingTop, paddingBottom } = getBounds();
       const maxY = height - paddingBottom;
 
       const now = Date.now();
@@ -272,10 +274,10 @@ export default function FloatingTech() {
           let newX = item.x + vx;
           let newY = item.y + vy;
 
-          const rightBound = width - paddingX - RADIUS * 2;
+          const rightBound = width - paddingRight - RADIUS * 2;
           const bottomBound = maxY - RADIUS * 2;
 
-          if (newX < paddingX) { vx = Math.abs(vx) * RESTITUTION; newX = paddingX; }
+          if (newX < paddingLeft) { vx = Math.abs(vx) * RESTITUTION; newX = paddingLeft; }
           else if (newX > rightBound) { vx = -Math.abs(vx) * RESTITUTION; newX = rightBound; }
 
           if (newY < paddingTop) { vy = Math.abs(vy) * RESTITUTION; newY = paddingTop; }
@@ -326,13 +328,13 @@ export default function FloatingTech() {
     }, 16);
 
     const handleResize = () => {
-      const { width, height, paddingX, paddingTop, paddingBottom } = getBounds();
+      const { width, height, paddingLeft, paddingRight, paddingTop, paddingBottom } = getBounds();
       const maxY = height - paddingBottom;
 
       setItems((prev) =>
         prev.map((item) => ({
           ...item,
-          x: Math.max(paddingX, Math.min(item.x, width - paddingX)),
+          x: Math.max(paddingLeft, Math.min(item.x, width - paddingRight)),
           y: Math.max(paddingTop, Math.min(item.y, maxY)),
         }))
       );

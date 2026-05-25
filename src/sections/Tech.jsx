@@ -139,7 +139,7 @@ export default function Tech() {
           <h2
             ref={titleRef}
             className="text-3xl font-semibold md:text-5xl"
-            style={{ fontFamily: '"Space Grotesk", sans-serif', opacity: 0 }}
+            style={{ fontFamily: '"Science Gothic", sans-serif', opacity: 0 }}
           >
             Stack moderna e escalável
           </h2>
@@ -192,7 +192,7 @@ export default function Tech() {
 
                 <p
                   className="relative text-sm font-semibold text-white"
-                  style={{ fontFamily: '"Space Grotesk", sans-serif' }}
+                  style={{ fontFamily: '"Science Gothic", sans-serif' }}
                 >
                   {category.title}
                 </p>
@@ -201,8 +201,8 @@ export default function Tech() {
                   {category.items.map((item) => (
                     <span
                       key={item}
-                      className="text-[11px] text-white/50"
-                      style={{ fontFamily: '"Inter", sans-serif' }}
+                      className="text-xs text-white/55"
+                      style={{ fontFamily: '"Science Gothic", sans-serif' }}
                     >
                       {item}
                     </span>

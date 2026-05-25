@@ -183,7 +183,7 @@ export default function Contact() {
                     href="mailto:fabiohuem@hotmail.com"
                     className="flex items-center gap-3 text-white/75 transition hover:text-white"
                   >
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5">
                       <Mail size={18} />
                     </span>
                     <span>fabiohuem@hotmail.com</span>
@@ -195,14 +195,14 @@ export default function Contact() {
                     rel="noreferrer"
                     className="flex items-center gap-3 text-white/75 transition hover:text-white"
                   >
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5">
                       <MessageCircle size={18} />
                     </span>
                     <span>WhatsApp para contato rápido</span>
                   </a>
 
                   <div className="flex items-center gap-3 text-white/60">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5">
                       <MapPin size={18} />
                     </span>
                     <span>Brasil, Curitiba/PR</span>
@@ -246,59 +246,69 @@ export default function Contact() {
               <form ref={formRef} onSubmit={handleSubmit} className="mt-8 flex flex-1 flex-col space-y-5">
                 <div className="grid gap-5 md:grid-cols-2">
                   <div>
-                    <label className="mb-2 block text-sm text-white/65">
+                    <label htmlFor="from_name" className="mb-2 block text-sm text-white/65">
                       Nome
                     </label>
                     <input
+                      id="from_name"
                       type="text"
                       name="from_name"
                       placeholder="Seu nome"
                       required
-                      className="w-full rounded-2xl border border-white/10 bg-[#020202]/80 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-[#d0f2e7]/35"
+                      autoComplete="name"
+                      className="w-full rounded-2xl border border-white/10 bg-[#020202]/80 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-[#d0f2e7]/60 focus-visible:ring-2 focus-visible:ring-[#d0f2e7]/35"
                     />
                   </div>
 
                   <div>
-                    <label className="mb-2 block text-sm text-white/65">
+                    <label htmlFor="from_email" className="mb-2 block text-sm text-white/65">
                       Email
                     </label>
                     <input
+                      id="from_email"
                       type="email"
                       name="from_email"
                       placeholder="seuemail@exemplo.com"
                       required
-                      className="w-full rounded-2xl border border-white/10 bg-[#020202]/80 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-[#d0f2e7]/35"
+                      autoComplete="email"
+                      className="w-full rounded-2xl border border-white/10 bg-[#020202]/80 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-[#d0f2e7]/60 focus-visible:ring-2 focus-visible:ring-[#d0f2e7]/35"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm text-white/65">
+                  <label htmlFor="project_type" className="mb-2 block text-sm text-white/65">
                     Tipo de projeto
                   </label>
                   <input
+                    id="project_type"
                     type="text"
                     name="project_type"
                     placeholder="Site, landing page, sistema web..."
-                    className="w-full rounded-2xl border border-white/10 bg-[#020202]/80 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-[#d0f2e7]/35"
+                    autoComplete="off"
+                    className="w-full rounded-2xl border border-white/10 bg-[#020202]/80 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-[#d0f2e7]/60 focus-visible:ring-2 focus-visible:ring-[#d0f2e7]/35"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm text-white/65">
+                  <label htmlFor="message" className="mb-2 block text-sm text-white/65">
                     Mensagem
                   </label>
                   <textarea
+                    id="message"
                     name="message"
                     rows="10"
                     placeholder="Me conte um pouco sobre o que você precisa..."
                     required
-                    className="min-h-[280px] w-full rounded-2xl border border-white/10 bg-[#020202]/80 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-[#d0f2e7]/35"
+                    autoComplete="off"
+                    className="min-h-[280px] w-full resize-y rounded-2xl border border-white/10 bg-[#020202]/80 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-[#d0f2e7]/60 focus-visible:ring-2 focus-visible:ring-[#d0f2e7]/35"
                   />
                 </div>
 
                 {status.message && (
                   <div
+                    role="alert"
+                    aria-live="polite"
                     className={`rounded-2xl border px-4 py-3 text-sm ${
                       status.type === "success"
                         ? "border-emerald-400/20 bg-emerald-400/10 text-emerald-300"
